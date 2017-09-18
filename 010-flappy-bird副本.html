@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.container{
+				width: 400px;
+				height: 600px;
+				overflow: hidden;
+				position: relative;
+				border: 1px solid black;
+				margin: 0 auto;
+			}
+			.score{
+				position: absolute;
+				top: 10px;
+				left: 20px;
+				overflow: hidden;
+				z-index: 5;
+				display: none;
+			}
+			.score>img{
+				float: left;
+			}
+			.bg{
+				width: 200%;
+				height: 100%;
+				position: absolute;
+				left: 0;
+				top: 0;
+				overflow: hidden;
+			}
+			.bg>img{
+				width: 50%;
+				height: 100%;
+				float: left;
+			}
+			.ani{
+				position: absolute;
+				top: 186px;
+				left: 96px;
+				animation: ani 2s linear infinite reverse;
+			}
+			@-webkit-keyframes ani{
+				0%{
+					top: 186px;
+				}
+				50%{
+					top: 170px;
+				}
+				100%{
+					top: 186px;
+				}
+			}
+			.ani>img,.ani>div{
+				position: absolute;
+			}
+			.ani_bird{
+				width: 40px;
+				height: 30px;
+				background-size: 100% 100%;
+				top: 38px;
+				left: 188px;
+				animation: ani_bird .5s linear infinite;
+			}
+			@-webkit-keyframes ani_bird{
+				from{
+					background-image: url(010pic/bird0.png);
+				}
+				to{
+					background-image: url(010pic/bird1.png);
+				}
+			}
+			.btns{
+				position: absolute;
+				overflow: hidden;
+				width: 60%;
+				top: 300px;
+				margin-left: 20%;
+			}
+			.btns>img:nth-child(1){
+				float: left;
+			}
+			.btns>img:nth-child(2){
+				float: right;
+			}
+			
+			/*------------ bird -----------*/
+			.bird{
+				width: 40px;
+				height: 30px;
+				position: absolute;
+				top: 0;
+				left: 80px;
+				background-size: 100% 100%;
+				background-repeat: no-repeat;
+				display: none;
+			}
+			.bird_down{
+				background: url(010pic/down_bird0.png);
+				animation: bird_down 0.25s linear infinite;
+			}
+			@-webkit-keyframes bird_down{
+				from{
+					background: url(010pic/down_bird0.png);
+				}
+				to{
+					background: url(010pic/down_bird1.png);
+				}
+			}
+			.bird_up{
+				background: url(010pic/up_bird0.png);
+				animation: bird_up 0.25s linear infinite;
+			}
+			@-webkit-keyframes bird_up{
+				from{
+					background: url(010pic/up_bird0.png);
+				}
+				to{
+					background: url(010pic/up_bird1.png);
+				}
+			}
+			.bird_dead{
+				background-image: url(010pic/bird1.png);
+			}
+			
+			
+			/*----pipe-------*/
+			.pipe{
+				width: 80px;
+				height: 530px;
+				position: absolute;
+				top: 0;
+				left: 400px;
+			}
+			.pipe_up{
+				width: 100%;
+				background: url(010pic/up_mod.png) repeat-y 0 0;
+				background-size:100% auto;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			.pipe_up_head{
+				width: 100%;
+				height: 30px;
+				background: url(010pic/up_pipe.png) no-repeat 0 0;
+				background-size: 100% 100%;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+			}
+			
+			
+			.pipe_down{
+				width: 100%;
+				background: url(010pic/down_mod.png) repeat-y 0 0;
+				background-size:100% 100%;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+			}
+			.pipe_down_head{
+				width: 100%;
+				height: 30px;
+				position: absolute;
+				top:0;
+				left: 0;
+				background: url(010pic/down_pipe.png) no-repeat 0 0;
+				background-size:100% 100%;
+			}
+			
+			
+			/*---------gameover---------*/
+			.gameover{
+				position: absolute;
+				text-align: center;
+				left: 68px;
+				top: 135px;
+				display: none;
+				z-index: 5;
+			}
+			.restart{
+				display: inline-block;
+				background: orangered;
+				color: white;
+				font-size:25px;
+				padding: 3px 2px;
+				border-radius: 5px;
+			}
+			.score_record,.best_record{
+				position: absolute;
+				color: white;
+				font-size: 20px;
+				top: 80px;
+				left: 210px;
+			}
+			.best_record{
+				top: 135px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="bg">
+				<img src="010pic/bg.jpg"/>
+				<img src="010pic/bg.jpg"/>
+			</div>
+			<div class="score">
+				<img src="010pic/0.jpg" alt="" />
+			</div>
+			<div class="ani">
+				<img src="010pic/head.jpg" alt="" />
+				<div class="ani_bird"></div>
+			</div>
+			<div class="btns">
+				<img class="start" src="010pic/start.jpg"/>
+				<img src="010pic/submit.jpg"/>
+			</div>
+			
+			<div class="bird"></div>
+			
+			<!--<div class="pipe">
+				<div class="pipe_up">
+					<div class="pipe_up_head"></div>
+				</div>
+				<div class="pipe_down">
+					<div class="pipe_down_head"></div>
+				</div>
+			</div>-->
+			
+			<div class="gameover">
+				<img src="010pic/game_over.jpg"/><br/>
+				<img src="010pic/message.jpg"/><br/>
+				<span class="restart">重新开始</span><br/>
+				<span class="score_record">0</span>
+				<span class="best_record">0</span>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/main.js">
+		
+	</script>
+</html>
